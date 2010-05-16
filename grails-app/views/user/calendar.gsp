@@ -8,11 +8,13 @@
 	          height: 650,
 	          theme: true,
 	          editable: false,
+	          weekMode: 'liquid',
+	          month: ${month},
 	          events: [
 	            <g:each var="entry" in="${entries}">
 	              {
-	                title: '${entry[1]}${entry[2]} ${entry[3]}',
-	                start: new Date(${entry[0].year + 1900}, ${entry[0].month}, ${entry[0].day + 2})
+	                title: '${entry[1]}',
+	                start: new Date(${entry[0].year + 1900}, ${entry[0].month}, ${entry[0].date})
 	              },
 	            </g:each>
 	          ]

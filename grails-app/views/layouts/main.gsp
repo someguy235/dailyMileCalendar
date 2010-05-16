@@ -16,7 +16,7 @@
             <img src="${resource(dir:'images',file:'spinner.gif')}" alt="Spinner" />
         	</div>
         	<br />
-        	<h1>DailyMile Calendar</h1>
+        	<h1 class="ui-widget-header">DailyMile Calendar</h1>
         	<br />
         	<g:layoutBody />
         	<h3>
