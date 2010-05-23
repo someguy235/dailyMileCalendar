@@ -504,6 +504,7 @@ $.fn.fullCalendar = function(options) {
 			//
 			
 			prev: function() {
+				//openWindow(/user/calendar?month=4)
 				render(-1);
 			},
 			

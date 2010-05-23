@@ -23,6 +23,11 @@
         		All: &copy 2010, Ethan Shepherd
         	</h3>
 			<g:javascript>
+				$('.fc-button-prev').each(function() {
+					$(this).html('<a href="/user/calendar?month=4"></a>')
+				});
+			</g:javascript>        	
+			<g:javascript>
 				var gaJsHost = (("https:" == document.location.protocol) ? "https://ssl." : "http://www.");
 				document.write(unescape("%3Cscript src='" + gaJsHost + "google-analytics.com/ga.js' type='text/javascript'%3E%3C/script%3E"));
 			</g:javascript>
