@@ -1,5 +1,5 @@
 package com.dailymilecalendar
-import grails.converters.*;
+import grails.converters.JSON;
 
 class UserController {
 
