@@ -27,8 +27,8 @@ def calendar = {
 			//render it.toString()
 			//render "<br />"
 			woTitle = ""
-			woDate = new Date().parse("yyyy-MM-dd", "${it["created_at"].getAt(0..9)}")
-			woType = "${it.workout?.type}" 
+			woDate = new Date().parse("yyyy-MM-dd", "${it["at"].getAt(0..9)}")
+			woType = "${it.workout?.activity_type}" 
 			woDistance = "${it.workout?.distance?.value}"
 			woUnits = "${it.workout?.distance?.units}"
 			woTitle = woType + " " + woDistance + " " + woUnits
