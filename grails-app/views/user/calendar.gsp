@@ -10,6 +10,7 @@
 	          editable: false,
 	          weekMode: 'liquid',
 	          month: ${month},
+            year: ${year},
 	          events: [
 	            <g:each var="entry" in="${entries}">
 	              {
@@ -23,7 +24,7 @@
 		</g:javascript>
 	</head>
 	<body>
-	   <div style="width: 900px; margin: 0 auto;" id='calendar'></div>
+     <div style="width: 900px; margin: 0 auto;" id='calendar'></div>
 	</body>
 </html>
 
