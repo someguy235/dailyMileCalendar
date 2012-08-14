@@ -47,7 +47,7 @@ grails.spring.bean.packages = []
 // set per-environment serverURL stem for creating absolute links
 environments {
     production {
-        grails.serverURL = "eshepherd.dyndns.org:8080/${appName}"
+        grails.serverURL = "http://infinite-cove-3845.herokuapp.com"
     }
     development {
         grails.serverURL = "http://localhost:8080/${appName}"
