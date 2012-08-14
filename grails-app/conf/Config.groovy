@@ -68,23 +68,36 @@ log4j = {
     //}
 
 
-    error  'org.codehaus.groovy.grails.web.servlet',  //  controllers
-	       'org.codehaus.groovy.grails.web.pages', //  GSP
-	       'org.codehaus.groovy.grails.web.sitemesh', //  layouts
-	       'org.codehaus.groovy.grails.web.mapping.filter', // URL mapping
-	       'org.codehaus.groovy.grails.web.mapping', // URL mapping
-	       'org.codehaus.groovy.grails.commons', // core / classloading
-	       'org.codehaus.groovy.grails.plugins', // plugins
-	       'org.codehaus.groovy.grails.orm.hibernate', // hibernate integration
-	       'org.springframework',
-	       'org.hibernate',
-           'net.sf.ehcache.hibernate'
-
-    warn   'org.mortbay.log'
-
-    appenders{
-      file name:"stacktrace",file:"/var/log/tomcat6/dm_stacktrace.log"
+    appenders {
+        rollingFile  name:'infoLog', file:'logs/info.log', threshold: org.apache.log4j.Level.INFO, maxFileSize:1024000
+        rollingFile  name:'warnLog', file:'logs/warn.log', threshold: org.apache.log4j.Level.WARN, maxFileSize:1024000
+        rollingFile  name:'errorLog', file:'logs/error.log', threshold: org.apache.log4j.Level.ERROR, maxFileSize:1024000
+        rollingFile  name:'custom', file:'logs/custom.log', maxFileSize:1024000
+        console name: 'stdout', layout:pattern(conversionPattern: '%c{2} %m%n'), threshold: org.apache.log4j.Level.WARN
     }
+
+    root {
+        info 'infoLog','warnLog','errorLog','custom'//, stdout
+        error()
+        additivity = true
+    }
+    
+    error 'org.codehaus.groovy.grails.web.servlet',         //  controllers
+	        'org.codehaus.groovy.grails.web.pages',           //  GSP
+	        'org.codehaus.groovy.grails.web.sitemesh',        //  layouts
+	        'org.codehaus.groovy.grails.web.mapping.filter',  // URL mapping
+	        'org.codehaus.groovy.grails.web.mapping',         // URL mapping
+	        'org.codehaus.groovy.grails.commons',             // core / classloading
+	        'org.codehaus.groovy.grails.plugins',             // plugins
+	        'org.codehaus.groovy.grails.orm.hibernate',       // hibernate integration
+	        'org.springframework',
+	        'org.hibernate',
+          'net.sf.ehcache.hibernate'
+          
+
+    warn  'org.mortbay.log'
+    
+    debug "grails.app"
 }
 
 
