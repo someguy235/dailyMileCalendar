@@ -7,7 +7,8 @@ class UserController {
 def index = {
   def cal = Calendar.getInstance()
   def curYear = cal.get(Calendar.YEAR)
-  return [curYear:curYear]
+  def curMonth = cal.get(Calendar.MONTH)+1
+  return [curYear:curYear, curMonth:curMonth]
 }
 		
 def calendar = {
@@ -18,12 +19,14 @@ def calendar = {
   }
   else{
     def entries = []
-    def userJSON, userURL, woDate, woType, woDistance, woUnits, woTitle, woMonth, woYear, woTime
+    def streamData = ["Swimming":[:], "Running":[:], "Cycling":[:]]
+    def userJSON, userURL, woDate, woJday, woType, woDistance, woUnits, woTitle, woMonth, woYear, woTime
     def APIroot = "http://api.dailymile.com/people/"
     def needMoreEntries = true
     def page = 1
     def requestedMonth = params.month.asType(int) - 1
     def requestedYear = params.year.asType(int)
+    def jdays = [] as Set
     
     while (needMoreEntries){
       userURL = "${APIroot}${params.username}/entries.json?page=${page}"
@@ -32,6 +35,8 @@ def calendar = {
       userJSON.entries.each{
         woTitle = ""
         woDate = new Date().parse("yyyy-MM-dd", "${it["at"].getAt(0..9)}")
+        woJday = woDate.getAt(Calendar.DAY_OF_YEAR)
+        jdays.add(woJday)
         woMonth = woDate.month
         woYear = woDate.year+1900
         woType = it.workout?.activity_type
@@ -54,16 +59,56 @@ def calendar = {
 
         if (((woMonth < requestedMonth) && (woYear == requestedYear))
              ||(woYear < requestedYear)){
+        //if(woYear < requestedYear){
           needMoreEntries = false
         }
-        entries.add([woDate, woTitle])
+        entries.add([woDate, woTitle, woType, woDistance, woUnits])
+        
+        if(woType == 'Swimming'){
+          woDistance/=100
+        }
+        
+        if(woType in ["Swimming", "Running", "Cycling"]){
+          if(streamData[woType].keySet().contains(woJday)){
+            streamData[woType][woJday] += woDistance
+          }else{
+            streamData[woType] += [(woJday): woDistance]
+          }
+        }
       }
       if (needMoreEntries){
         page++
       }
     }
-    //render entries
-    return [entries: entries, username:params.username, month: requestedMonth, year: requestedYear, page:page]
+    
+    jdays.each{ day ->
+      streamData.each{ type ->
+        if(!type.value[day]){
+          type.value += [(day):0]
+        }
+      }
+    }  
+    
+    def streamJSONList = []
+    def streamJSON = ""
+    
+    streamData.each{ type ->
+      streamJSON = "["
+      type.value.sort{it.key}.eachWithIndex{ wo, idx ->
+        if(idx != 0){ streamJSON += ", " }
+        streamJSON += "{'x': "+ wo.key +", 'y': "+ wo.value +"}"
+      }
+      streamJSON += "]"
+      
+      streamJSONList += streamJSON
+    }
+    
+    return [entries: entries,
+            streamData: streamData,
+            streamJSONList: streamJSONList,
+            username:params.username, 
+            month: requestedMonth, 
+            year: requestedYear, page:page]
 	}
   }
 }

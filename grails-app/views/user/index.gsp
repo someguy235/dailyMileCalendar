@@ -23,7 +23,7 @@
 					<g:textField name="username" />
 				</h3>
 				<div class="ui-widget">
-						<g:select from="${1..12}" value="1" name="month" class="ui-button ui-widget-content ui-state-default ui-corner-all"></g:select>
+						<g:select from="${1..12}" value="${curMonth}" name="month" class="ui-button ui-widget-content ui-state-default ui-corner-all"></g:select>
 						<g:select from="${2007..curYear}" value="${curYear}" name="year" class="ui-button ui-widget-content ui-state-default ui-corner-all">
 						</g:select>
 				</div>

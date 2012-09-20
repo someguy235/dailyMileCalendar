@@ -8,7 +8,7 @@
         <g:javascript library="jquery" />
         <g:javascript library="application" />
         <g:javascript library="fullcalendar" />
-        <jq:plugin name="ui" />
+        <!--<jq:plugin name="ui" />-->
         <g:layoutHead />
     </head>
     <body>

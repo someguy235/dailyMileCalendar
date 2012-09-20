@@ -2,16 +2,20 @@
 	<head>
 		<title>DailyMile Calendar for ${username}</title>
 		<meta name="layout" content="main"/>
+    <link href='/dailyMileCalendar/css/syntax.css' rel='stylesheet' type='text/css' />
+  	<link href='/dailyMileCalendar/css/stream.css' rel='stylesheet' type='text/css' />
+  	
+    <script type="text/javascript" src='/dailyMileCalendar/js/d3.v2.min.js'></script>
 		<g:javascript>
 			$(document).ready(function() {
-	        $('#calendar').fullCalendar({
-	          height: 650,
+          $('#calendar').fullCalendar({
+	          height: 550,
 	          theme: true,
 	          editable: false,
 	          weekMode: 'liquid',
 	          month: ${month},
             year: ${year},
-	          events: [
+            events: [
 	            <g:each var="entry" in="${entries}">
 	              {
 	                title: '${entry[1]}',
@@ -20,11 +24,25 @@
 	            </g:each>
 	          ]
 	        })
+          
+          var yards_per_meter = 1.09361;
+          var miles_per_km = .621371;
+
 	      });
+        var tmpdata0 = ${streamJSONList};
+        var tmpdata1 = ${streamJSONList};
 		</g:javascript>
+    
 	</head>
 	<body>
-     <div style="width: 900px; margin: 0 auto;" id='calendar'></div>
+    <div style="width: 900px; margin: 0 auto;" id='calendar'></div>
+    <div class="gallery" id='chart'>
+      <button class='first last' onclick='transition()'>
+    		Update
+  		</button>
+    </div>
+   	<script src='/dailyMileCalendar/js/dm_data.js' type='text/javascript'> </script>
+  	<script src='/dailyMileCalendar/js/stream.js' type='text/javascript'> </script>
 	</body>
 </html>
 
