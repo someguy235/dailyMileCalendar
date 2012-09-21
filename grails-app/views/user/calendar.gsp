@@ -2,10 +2,10 @@
   <head>
     <title>DailyMile Calendar for ${username}</title>
     <meta name="layout" content="main"/>
-    <link href='/dailyMileCalendar/css/syntax.css' rel='stylesheet' type='text/css' />
-    <link href='/dailyMileCalendar/css/stream.css' rel='stylesheet' type='text/css' />
+    <link href='/css/syntax.css' rel='stylesheet' type='text/css' />
+    <link href='/css/stream.css' rel='stylesheet' type='text/css' />
 
-    <script type="text/javascript" src='/dailyMileCalendar/js/d3.v2.min.js'></script>
+    <script type="text/javascript" src='/js/d3.v2.min.js'></script>
     <g:javascript>
       $(document).ready(function() {
         var colors = {'Swimming': '#4FCEF7','Cycling': '#54CA44', 'Running': '#009BE0'};
