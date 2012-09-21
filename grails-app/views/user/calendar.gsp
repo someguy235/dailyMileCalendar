@@ -22,7 +22,7 @@
             {
               title: '${entry[1]}',
               start: new Date(${entry[0].year + 1900}, ${entry[0].month}, ${entry[0].date}),
-              color: colors['${woType}'];
+              color: colors['${entry[2]}'];
             },
             </g:each>
           ]
