@@ -2,10 +2,10 @@
   <head>
     <title>DailyMile Calendar for ${username}</title>
     <meta name="layout" content="main"/>
-    <link href='/css/syntax.css' rel='stylesheet' type='text/css' />
-    <link href='/css/stream.css' rel='stylesheet' type='text/css' />
+    <link rel='stylesheet' href="${resource(dir:'css',file:'syntax.css')}" />
+    <link rel='stylesheet' href="${resource(dir:'css',file:'stream.css')}" />
 
-    <script type="text/javascript" src='/js/d3.v2.min.js'></script>
+    <g:javascript src='d3.v2.min.js'></g:javascript>
     <g:javascript>
       $(document).ready(function() {
         var colors = {'Swimming': '#4FCEF7','Cycling': '#54CA44', 'Running': '#009BE0'};
@@ -25,7 +25,8 @@
               color: colors['${entry[2]}']
             },
             </g:each>
-          ]
+          ],
+          eventColor: '#aaa'
         })
 
         var yards_per_meter = 1.09361;
@@ -43,7 +44,7 @@
       <button class='first last' onclick='transition("bike")'>Bike</button>
       <button class='first last' onclick='transition("run")'>Run</button>
     </div>
-    <script src='/js/stream.js' type='text/javascript'> </script>
+  <g:javascript src='stream.js'></g:javascript>
   </body>
 </html>
 
