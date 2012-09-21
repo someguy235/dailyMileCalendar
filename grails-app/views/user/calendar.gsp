@@ -8,7 +8,7 @@
     <script type="text/javascript" src='/dailyMileCalendar/js/d3.v2.min.js'></script>
     <g:javascript>
       $(document).ready(function() {
-        colors = {'Swimming': '#4FCEF7','Cycling': '#54CA44', 'Running': '#009BE0'};
+        var colors = {'Swimming': '#4FCEF7','Cycling': '#54CA44', 'Running': '#009BE0'};
 
         $('#calendar').fullCalendar({
           height: 550,
