@@ -43,7 +43,7 @@
       <button class='first last' onclick='transition("bike")'>Bike</button>
       <button class='first last' onclick='transition("run")'>Run</button>
     </div>
-    <script src='/dailyMileCalendar/js/stream.js' type='text/javascript'> </script>
+    <script src='/js/stream.js' type='text/javascript'> </script>
   </body>
 </html>
 
