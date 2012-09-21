@@ -29,19 +29,23 @@
           var miles_per_km = .621371;
 
 	      });
-        var tmpdata0 = ${streamJSONList};
-        var tmpdata1 = ${streamJSONList};
+        var alldata = {'swim': ${streamJSONList[0]}, 'run': ${streamJSONList[1]}, 'bike': ${streamJSONList[2]} }
 		</g:javascript>
     
 	</head>
 	<body>
     <div style="width: 900px; margin: 0 auto;" id='calendar'></div>
     <div class="gallery" id='chart'>
-      <button class='first last' onclick='transition()'>
-    		Update
+      <button class='first last' onclick='transition("swim")'>
+    		Swim
+  		</button>
+      <button class='first last' onclick='transition("bike")'>
+    		Bike
+  		</button>
+      <button class='first last' onclick='transition("run")'>
+    		Run
   		</button>
     </div>
-   	<script src='/dailyMileCalendar/js/dm_data.js' type='text/javascript'> </script>
   	<script src='/dailyMileCalendar/js/stream.js' type='text/javascript'> </script>
 	</body>
 </html>

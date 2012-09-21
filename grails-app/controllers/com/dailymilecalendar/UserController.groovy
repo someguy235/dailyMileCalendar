@@ -68,7 +68,7 @@ def calendar = {
           woDistance/=100
         }
         
-        if(woType in ["Swimming", "Running", "Cycling"]){
+        if((woType in ["Swimming", "Running", "Cycling"]) && (woYear == requestedYear)){
           if(streamData[woType].keySet().contains(woJday)){
             streamData[woType][woJday] += woDistance
           }else{
@@ -80,7 +80,7 @@ def calendar = {
         page++
       }
     }
-    
+    /*
     jdays.each{ day ->
       streamData.each{ type ->
         if(!type.value[day]){
@@ -88,6 +88,15 @@ def calendar = {
         }
       }
     }  
+    */
+    //fill in zeroes for days with no data
+    (0..365).each { day ->
+      streamData.each{ type ->
+        if(!type.value[day]){
+          type.value += [(day):0]
+        }
+      }
+    }
     
     def streamJSONList = []
     def streamJSON = ""
