@@ -5,7 +5,7 @@
     <link rel='stylesheet' href="${resource(dir:'css',file:'syntax.css')}" />
     <link rel='stylesheet' href="${resource(dir:'css',file:'stream.css')}" />
 
-    <g:javascript src='d3.v2.min.js'></g:javascript>
+    <g:javascript src='d3.v3.min.js'></g:javascript>
     <g:javascript>
       $(document).ready(function() {
         var colors = {'Swimming': '#4FCEF7','Cycling': '#54CA44', 'Running': '#009BE0'};
@@ -39,10 +39,11 @@
   </head>
   <body>
     <div style="width: 900px; margin: 0 auto;" id='calendar'></div>
-    <div class="gallery" id='chart'>
       <button class='first last' onclick='transition("swim")'>Swim</button>
       <button class='first last' onclick='transition("bike")'>Bike</button>
       <button class='first last' onclick='transition("run")'>Run</button>
+      <button class='first last' onclick='transition("all")'>All</button>
+    <div class="gallery" id='chart'>
     </div>
   <g:javascript src='stream.js'></g:javascript>
   </body>

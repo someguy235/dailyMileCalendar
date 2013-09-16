@@ -57,9 +57,9 @@ def calendar = {
           woTitle += (woHr +":"+ woMn + " ")
         }
 
-        if (((woMonth < requestedMonth) && (woYear == requestedYear))
-             ||(woYear < requestedYear)){
-        //if(woYear < requestedYear){
+        //if (((woMonth < requestedMonth) && (woYear == requestedYear))
+        //     ||(woYear < requestedYear)){
+        if(woYear < requestedYear){
           needMoreEntries = false
         }
         entries.add([woDate, woTitle, woType, woDistance, woUnits])
