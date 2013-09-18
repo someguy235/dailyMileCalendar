@@ -42,7 +42,7 @@
       <button class='first last' onclick='transition("swim")'>Swim</button>
       <button class='first last' onclick='transition("bike")'>Bike</button>
       <button class='first last' onclick='transition("run")'>Run</button>
-      <button class='first last' onclick='transition("all")'>All</button>
+      <!--<button class='first last' onclick='transition("all")'>All</button>-->
     <div class="gallery" id='chart'>
     </div>
   <g:javascript src='stream.js'></g:javascript>

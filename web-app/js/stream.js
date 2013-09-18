@@ -1,62 +1,88 @@
 
-var n = 3, // number of layers
-m = 365,
+//var n = 3, // number of layers
+//m = 365,
   
 color = {'swim': '#4FCEF7','bike': '#54CA44', 'run': '#009BE0'};
 //color = ['#900', '#090', '#009']
 
-var width = 900/365,
-height = 300
+var w = 900,
+    h = 300,
+    ypad = 25,
+    xpad = 40
 
 var data0 = alldata['swim']
 
 var x = d3.scale.linear()
-  .domain([0, 1])
-  .range([0, width]);
+  .domain([0, 365])
+  .range([0+xpad, w]);
  
 var y = d3.scale.linear()
   .domain([0, 1]) //we'll scale the events as percents instead
-  .rangeRound([0, height]);
+  .rangeRound([ypad, h]);
 
 var chart = d3.select("#chart").append("svg")
-  .attr("class", "chart axis")
-  .attr("width", width * 365)
-  .attr("height", height);
+  .attr("class", "chart")
+  .attr("width", w)
+  .attr("height", h)
+  .style("background", "#AAAAAA");
+
+var xAxis = d3.svg.axis()
+  .scale(d3.time.scale()
+    .domain([new Date(2013, 0, 1), new Date(2013, 11, 31)])
+    .range([0+xpad, w])
+  )
+  .ticks(d3.time.months, 1)
+  .tickFormat(d3.time.format("  %b"))
+
+chart.append("g")
+  .attr("class", "xaxis axis")
+  .attr("transform", "translate(0," + (h-ypad) + ")")
+  .call(xAxis)
+
+var yScale = d3.scale.linear()
+  .domain([1000, 0])
+  .range([ypad, h]);
+
+var yAxis = d3.svg.axis()
+  .scale(yScale)
+  .orient("left")
+  //.ticks(5);
+
+chart.append("g")
+  .attr("class", "yaxis axis")
+  .attr("transform", "translate(" + xpad + ","+ (0-ypad) +")")
+  .call(yAxis);
 
 chart.selectAll("rect")
   .data(data0)
   .enter().append("rect")
   .attr("x", function(d, i) { return x(i) - .5; })
-  .attr("y", height)
-  .attr("width", width)
-  .attr("height", function(d) { return y(d.y); })
-  .attr("fill", "#AAAAAA")
+  .attr("y", h-ypad)
+  .attr("width", w/365)
+  .attr("height", function(d) { return 0;})
+  .attr("fill", "#AA0000")
 
-transition("swim");
-
-var xAxis = d3.svg.axis()
-  .scale(
-    d3.time.scale()
-      .domain([new Date(2013, 0, 1), new Date(2013, 11, 31)])
-      .range([0, 900])
-  )
-  .ticks(d3.time.months, 1)
-  //.orient("bottom")
-  
-d3.select("#chart").style("background", "#aaa");
-
-chart.append("g")
-    .call(xAxis)
-    
 function transition(type) {
   var max = d3.max(alldata[type], function(data){ return data.y; });
+
+  var yScale = d3.scale.linear()
+    .domain([max, 0])
+    .range([ypad, h]);
+  var yAxis = d3.svg.axis()
+    .scale(yScale)
+    .orient("left")
+  chart.selectAll(".yaxis")
+  .call(yAxis)
+  
   chart.selectAll("rect")
     .data(alldata[type])
     .transition()
     .duration(2500)
     .attr("x", function(d, i) { return x(i) - .5; })
-    .attr("y", function(d) { return height - y(d.y)/max + 25; })
-    .attr("width", width)
-    .attr("height", function(d) { return y(d.y)/max; })
+    .attr("y", function(d) { return h-(y(d.y/max*.95)); })
+    .attr("width", w/365)
+    .attr("height", function(d) { return (y(d.y/max*.95))-ypad; })
     .style("fill", color[type])
 }
+
+transition("swim");
