@@ -13,3 +13,46 @@
     font-family: sans-serif;
     font-size: 11px;
 }
+
+.ygrid .tick {
+    stroke: lightgrey;
+    opacity: 0.7;
+}
+.ygrid path {
+      stroke-width: 0;
+}
+.ygrid line {
+  stroke: lightgrey;
+  opacity: 0.7;
+}
+.chart_button{
+  display: inline-block;
+  padding: 3px 6px;
+  font-size: 14px;
+  font-weight: normal;
+  line-height: 1.428571429;
+  text-align: center;
+  white-space: nowrap;
+  vertical-align: middle;
+  cursor: pointer;
+  border: 1px solid transparent;
+  border-radius: 4px;
+  -webkit-user-select: none;
+     -moz-user-select: none;
+      -ms-user-select: none;
+       -o-user-select: none;
+          user-select: none;
+  margin-top: 10px;
+  margin-bottom: 5px;
+  background-color: #efefef;
+}
+.chart_button:hover,
+.chart_button:focus{
+/*  outline: thin dotted #333;*/
+/*  outline: 5px auto -webkit-focus-ring-color;*/
+/*  outline-offset: -2px;*/
+  color: #333333;
+  text-decoration: none;
+  background-color: #ebebeb;
+  border-color: #adadad;
+}

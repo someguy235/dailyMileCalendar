@@ -65,7 +65,7 @@ def calendar = {
         entries.add([woDate, woTitle, woType, woDistance, woUnits])
         
         if(woType == 'Swimming'){
-          woDistance/=100
+          //woDistance/=100
         }
         
         if((woType in ["Swimming", "Running", "Cycling"]) && (woYear == requestedYear)){

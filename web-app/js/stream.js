@@ -24,7 +24,7 @@ var chart = d3.select("#chart").append("svg")
   .attr("class", "chart")
   .attr("width", w)
   .attr("height", h)
-  .style("background", "#AAAAAA");
+  .style("background", "#ccc");
 
 var xAxis = d3.svg.axis()
   .scale(d3.time.scale()
@@ -50,8 +50,16 @@ var yAxis = d3.svg.axis()
 
 chart.append("g")
   .attr("class", "yaxis axis")
-  .attr("transform", "translate(" + xpad + ","+ (0-ypad) +")")
+  .attr("transform", "translate(" + xpad + ","+ ((h-ypad)*.05) +")")
   .call(yAxis);
+
+chart.append("g")
+  .attr("class", "ygrid axis")
+  .attr("transform", "translate("+ xpad +", "+ ((h-ypad)*.05) +")")
+  .call(yAxis
+    .tickSize(-w+xpad, 0, 0)
+    .tickFormat("")
+  )
 
 chart.selectAll("rect")
   .data(data0)
@@ -60,19 +68,25 @@ chart.selectAll("rect")
   .attr("y", h-ypad)
   .attr("width", w/365)
   .attr("height", function(d) { return 0;})
-  .attr("fill", "#AA0000")
+  .attr("fill", "#ccc")
 
 function transition(type) {
   var max = d3.max(alldata[type], function(data){ return data.y; });
 
   var yScale = d3.scale.linear()
     .domain([max, 0])
-    .range([ypad, h]);
+    .range([0, (h-ypad)*.95]);
   var yAxis = d3.svg.axis()
     .scale(yScale)
     .orient("left")
+    
   chart.selectAll(".yaxis")
   .call(yAxis)
+  chart.selectAll(".ygrid")
+  .call(yAxis
+    .tickSize(-w+xpad, 0, 0)
+    .tickFormat("")
+  )
   
   chart.selectAll("rect")
     .data(alldata[type])

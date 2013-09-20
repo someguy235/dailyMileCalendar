@@ -39,9 +39,9 @@
   </head>
   <body>
     <div style="width: 900px; margin: 0 auto;" id='calendar'></div>
-      <button class='first last' onclick='transition("swim")'>Swim</button>
-      <button class='first last' onclick='transition("bike")'>Bike</button>
-      <button class='first last' onclick='transition("run")'>Run</button>
+      <button class='first last chart_button' onclick='transition("swim")'>Swim</button>
+      <button class='first last chart_button' onclick='transition("bike")'>Bike</button>
+      <button class='first last chart_button' onclick='transition("run")'>Run</button>
       <!--<button class='first last' onclick='transition("all")'>All</button>-->
     <div class="gallery" id='chart'>
     </div>

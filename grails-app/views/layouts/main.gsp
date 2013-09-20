@@ -1,6 +1,7 @@
 <html>
     <head>
         <title><g:layoutTitle default="Grails" /></title>
+<!--        <link rel='stylesheet' href="${resource(dir:'vendor/bootstrap/css',file:'bootstrap.min.css')}" />-->
         <link rel="stylesheet" href="${resource(dir:'css',file:'main.css')}" />
         <link rel="stylesheet" href="${resource(dir:'css/ui-lightness',file:'jquery-ui-1.8.1.custom.css')}" />
         <link rel='stylesheet' href="${resource(dir:'css',file:'fullcalendar.css')}" />
