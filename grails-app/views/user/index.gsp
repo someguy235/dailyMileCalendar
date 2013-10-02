@@ -5,18 +5,42 @@
 		<meta name="layout" content="main"/>
 		<g:javascript>
 			$(function() {
-				$("#period").buttonset();
+				//$("#period").buttonset();
 			});
 		</g:javascript>
 		<g:javascript>
 			$(function() {
-				$("#numArtists").buttonset();
+				//$("#numArtists").buttonset();
 			});
 		</g:javascript>
 		<title>DailyMile Calendar</title>
 	</head>
-	<body>
-		<div class="main centered">
+	<body >
+    <div ng-app="DMCalApp">
+		<div ng-controller="FormController" class="main centered">
+      <form ng-submit="getActivities()">
+        <h3>
+					<label for="username">DailyMile Username</label>
+					<g:textField ng-model="username" name="username" />
+				</h3>
+        
+        
+      </form>
+    </div>
+
+    <div>&nbsp;</div>
+    
+    <div ng-controller="DisplayController">
+      <div id="spinner" ng-show="showSpinner" style="display: none;">
+        <img src="${resource(dir:'images',file:'spinner.gif')}" alt="Spinner" />
+      </div>
+
+      <div id="chart1">
+        <svg style="width: 900px; height: 500px;"></svg>
+      </div>
+    </div>
+
+      <!--
 			<g:form action="calendar">
 				<h3>
 					<label for="username">DailyMile Username</label>
@@ -37,6 +61,7 @@
 				<br />
 				<button aria-disabled="false" role="button" class="ui-button ui-widget ui-state-default ui-corner-all ui-button-text-only" id="submit"><span class="ui-button-text">Submit</span></button>
 			</g:form>
-		</div>
+      -->
+    </div>
 	</body>
 </html>

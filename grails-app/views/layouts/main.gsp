@@ -5,10 +5,17 @@
         <link rel="stylesheet" href="${resource(dir:'css',file:'main.css')}" />
         <link rel="stylesheet" href="${resource(dir:'css/ui-lightness',file:'jquery-ui-1.8.1.custom.css')}" />
         <link rel='stylesheet' href="${resource(dir:'css',file:'fullcalendar.css')}" />
+        <link rel='stylesheet' href="${resource(dir:'css',file:'nv.d3.css')}" />
+        <link rel='stylesheet' href="${resource(dir:'css',file:'stream.css')}" />
         <link rel="shortcut icon" href="${resource(dir:'images',file:'favicon.ico')}" type="image/x-icon" />
         <g:javascript library="jquery" />
+        <g:javascript src='d3.v3.min.js'></g:javascript>
+        <g:javascript src='nv.d3.min.js'></g:javascript>
         <g:javascript library="application" />
         <g:javascript library="fullcalendar" />
+        <g:javascript src="angular.min.js" />
+        <g:javascript src="controllers.js" />
+        
         <!--<jq:plugin name="ui" />-->
         <g:layoutHead />
     </head>
