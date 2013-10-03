@@ -2,19 +2,20 @@
 
 html {
 	text-align: center;
-	 background-image: url("../images/stripe.png");
+  background-image: url("../images/brushed.png");
 }
 
 /* GENERAL */
 
 body {
-	width: 900px;
+  background-image: url("../images/brushed.png");
+/*	width: 900px;*/
 	text-align: center;
   /*  background: #ddd;*/
     color: #333;
     font: 11px verdana, arial, helvetica, sans-serif;
 	margin:0 auto;
-    padding:header-<length> 0 footer-<length> 0;
+/*    padding:header-<length> 0 footer-<length> 0;*/
 	
 }
 
@@ -25,15 +26,17 @@ a:link, a:visited, a:hover {
 }
 
 h1{
+  margin-top: 1em;
 	text-align: center;	
-	background: #F6AE38;
+/*	background: #F6AE38;*/
+  background: #B8750A;
 	width: 100%;
 	
 }
 
 h2 {
-    /*color: #5686BA;*/
-    color: #F6AE38;
+    color: #FBDFB1;
+/*    color: #F6AE38;*/
     font-weight: normal;
     font-size: 18px;
     margin: .8em 0 .3em 0;

@@ -23,7 +23,8 @@ class UserController {
     }
     else{
       def entries = []
-      def streamData = ["Swimming":[:], "Running":[:], "Cycling":[:]]
+      def collectData = ["Swimming":[:], "Running":[:], "Cycling":[:]]
+      def streamData = ["Swimming":[], "Running":[], "Cycling":[]]
       def userJSON, userURL, woDate, woJday, woType, woDistance, woUnits, woTitle, woMonth, woYear, woTime
       def APIroot = "http://api.dailymile.com/people/"
       def needMoreEntries = true
@@ -31,7 +32,9 @@ class UserController {
       def requestedMonth = params.month.asType(int) - 1
       def requestedYear = params.year.asType(int)
       def jdays = [] as Set
+      def allMillis = [] as SortedSet
       def returnData = []
+      def lastMillis = 0
 
       while (needMoreEntries){
         userURL = "${APIroot}${params.username}/entries.json?page=${page}"
@@ -64,7 +67,10 @@ class UserController {
 
           //if (((woMonth < requestedMonth) && (woYear == requestedYear))
           //     ||(woYear < requestedYear)){
-          if(woYear < requestedYear){
+          
+          
+          //if(woYear < requestedYear){
+          if(woYear < requestedYear && woMonth < requestedMonth){
             needMoreEntries = false
           }
           entries.add([woDate, woTitle, woType, woDistance, woUnits])
@@ -73,6 +79,24 @@ class UserController {
             woDistance/=1760
           }
 
+          
+          def woMillis = woDate.time
+          allMillis.add(woMillis)
+          lastMillis = woMillis > lastMillis ? woMillis : lastMillis
+          if( ( streamData.keySet().contains(woType) ) && 
+            ((woYear == requestedYear) || (woYear == requestedYear-1 && woMonth >= requestedMonth))
+            ){
+            if(collectData[woType].keySet().contains(woMillis)){
+              collectData[woType][woMillis] += woDistance
+            }else{
+              collectData[woType] += [(woMillis): woDistance]
+            }
+          }
+
+  //        if((streamData.keySet().contains(woType)) && (woYear == requestedYear)){
+
+//          }
+          /*
           if((streamData.keySet().contains(woType)) && (woYear == requestedYear)){
             if(streamData[woType].keySet().contains(woJday)){
               streamData[woType][woJday] += woDistance
@@ -80,12 +104,39 @@ class UserController {
               streamData[woType] += [(woJday): woDistance]
             }
           }
+*/
         }
         if (needMoreEntries){
           page++
         }
       }
       
+      //allMillis.each{ time ->
+      (365..0).each{ jday ->
+        Long offset = 86400000L * jday
+        Long time = lastMillis - offset
+        streamData.keySet().each{ type ->
+          if(collectData[(type)][(time)]){
+            streamData[(type)].push([(time), collectData[(type)][(time)]])
+          }else{
+            streamData[(type)].push([(time), 0])
+          }
+        }
+      }
+      println streamData
+      
+      streamData.each{ key, vals ->
+        def returnObj = [:]
+        returnObj['key'] = key
+        returnObj['values'] = streamData[(key)]
+        returnObj['color'] = COLORS[(key)]
+        returnData.push(returnObj)
+      }
+      
+      
+      
+      
+      /*
       streamData.each{ key, vals ->
         def returnObj = [:]
         returnObj['key'] = key
@@ -101,7 +152,8 @@ class UserController {
         returnObj['color'] = COLORS[(key)]
         returnData.push(returnObj)
       }
-      //println returnData
+      */
+      println returnData
       render returnData as JSON
     }
   }

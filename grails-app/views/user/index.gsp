@@ -3,6 +3,7 @@
 	<head>
 		<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
 		<meta name="layout" content="main"/>
+    <!--
 		<g:javascript>
 			$(function() {
 				//$("#period").buttonset();
@@ -13,32 +14,48 @@
 				//$("#numArtists").buttonset();
 			});
 		</g:javascript>
+    -->
 		<title>DailyMile Calendar</title>
 	</head>
 	<body >
     <div ng-app="DMCalApp">
-		<div ng-controller="FormController" class="main centered">
-      <form ng-submit="getActivities()">
-        <h3>
-					<label for="username">DailyMile Username</label>
-					<g:textField ng-model="username" name="username" />
-				</h3>
-        
-        
-      </form>
-    </div>
+      <div ng-controller="FormController" class="row-fluid">
+        <div class="main centered span8 offset2">
+          <form ng-submit="getActivities()">
+            <div class="row">
+              <div class="input-append">
+                <input ng-model="username" class="span10" type="text" placeholder="DailyMile Username">
+                <button class="btn">Go!</button>
+              </div>
+            </div>
+          </form>
+        </div>
+      </div>
 
-    <div>&nbsp;</div>
+      <div class="row-fluid">&nbsp;</div>
     
-    <div ng-controller="DisplayController">
-      <div id="spinner" ng-show="showSpinner" style="display: none;">
-        <img src="${resource(dir:'images',file:'spinner.gif')}" alt="Spinner" />
+      <div ng-controller="DisplayController" class="row-fluid">
+        <div class="span8 offset2">
+          <div id="spinner" ng-show="showSpinner" style="display: none;">
+            <img src="${resource(dir:'images',file:'spinner.gif')}" alt="Spinner" />
+          </div>
+
+          <div id="error" ng-show="showError" style="display: none;">
+            Sorry, something went wrong!
+          </div>
+
+          <div id="chart1">
+            <svg style="width: 900px; height: 300px;"></svg>
+          </div>
+        </div>
       </div>
 
-      <div id="chart1">
-        <svg style="width: 900px; height: 500px;"></svg>
+      <div ng-controller="CalController" class="row-fluid">
+        <div class="span8 offset2">
+          
+          
+        </div>
       </div>
-    </div>
 
       <!--
 			<g:form action="calendar">
