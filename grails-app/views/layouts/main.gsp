@@ -17,11 +17,12 @@
         <g:layoutHead />
     </head>
     <body>
-<!--        	<h1 class="ui-widget-header">DailyMile Calendar</h1>-->
-        	<br />
+      <div class="row-fluid">
+        <div class="span8 offset2">
+          <h1 class="ui-widget-header">DailyMile Calendar</h1>
+        </div>
+      </div>
         	<g:layoutBody />
-        	<h3 class="footer">
-        		All: &copy 2013, Ethan Shepherd
-        	</h3>
+<!--        	<h3 class="footer">All: &copy 2013, Ethan Shepherd</h3>-->
     </body>
 </html>

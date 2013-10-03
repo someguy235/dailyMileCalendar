@@ -8,15 +8,11 @@ html {
 /* GENERAL */
 
 body {
-  background-image: url("../images/brushed.png");
-/*	width: 900px;*/
+  background-image: url("../images/sos.png");
 	text-align: center;
-  /*  background: #ddd;*/
-    color: #333;
-    font: 11px verdana, arial, helvetica, sans-serif;
+  color: #333;
+  font: 11px verdana, arial, helvetica, sans-serif;
 	margin:0 auto;
-/*    padding:header-<length> 0 footer-<length> 0;*/
-	
 }
 
 a:link, a:visited, a:hover {
@@ -26,11 +22,13 @@ a:link, a:visited, a:hover {
 }
 
 h1{
+  background: #B8750A;
+	color: #444 !important;
   margin-top: 1em;
+  padding: 3px 0px;
 	text-align: center;	
 /*	background: #F6AE38;*/
-  background: #B8750A;
-	width: 100%;
+  width: 100%;
 	
 }
 
@@ -76,19 +74,23 @@ input:focus, select:focus, textarea:focus {
 }
 
 .main {
+  background: #888;
+  border: 1px solid #F6AE38;
+  padding: 10px;
 	text-align: center;
-    background: #888;
-    /*width: 100%;*/
-    padding: 10px;
-    /*margin: 1px;*/
-    border: 1px solid #F6AE38;
+}
+.main form{
+  margin-bottom: 0 !important;
+}
+.main .input-append{
+  margin-top: 10px;
 }
 
 .search {
 	text-align: center;
-    background: #eee;
-    padding: 10px;
-    border: 1px solid #F6AE38;
+  background: #eee;
+  padding: 10px;
+  border: 1px solid #F6AE38;
 }	
 
 .tagOutput{
@@ -119,6 +121,7 @@ input:focus, select:focus, textarea:focus {
 	text-align: center;
 	color: #F6AE38;	
 	padding: 5px;
+  background-color: #aaa;
 }
 .clear {
     clear: both;
@@ -134,5 +137,10 @@ input:focus, select:focus, textarea:focus {
 	padding: .3em;
     margin: .8em 0 .3em 0;
 	
+}
+
+#calendar{
+/*  background-color: #ccc;*/
+/*  padding: 10px;*/
 }
 
