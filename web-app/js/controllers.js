@@ -39,7 +39,7 @@ DMCalModule.controller("FormController", function($scope, $http, DMCalService){
       "month": 9
     }
     $http({
-      url: '/dailyMileCalendar/user/calendar',
+      url: '/dailymile/user/calendar',
       method: "POST",
       data: JSON.stringify(postData),
       headers: {'Content-Type': 'application/json'}
